@@ -118,4 +118,15 @@ window.addEventListener( 'load', () => {
     document.getElementById( 'closeModal' ).addEventListener( 'click', () => {
         helpers.toggleModal( 'recording-options-modal', false );
     } );
+
+    //When the close chat button is clicked
+    document.getElementById( 'close-chat-pane' ).addEventListener( 'click', ( e ) => {
+        let chatElem = document.querySelector( '#chat-pane' );
+        let mainSecElem = document.querySelector( '#main-section' );
+
+        chatElem.setAttribute( 'hidden', true );
+        mainSecElem.classList.remove( 'col-md-9' );
+        mainSecElem.classList.add( 'col-md-12' );
+        chatElem.classList.remove( 'chat-opened' );
+    } );
 } );

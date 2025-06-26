@@ -1,168 +1,480 @@
-.chat-col{
+/* Dark Mode Video Meet App CSS */
+
+:root {
+    --dark-blue: #0A84FF;
+    --dark-green: #30D158;
+    --dark-red: #FF453A;
+    --dark-orange: #FF9F0A;
+    --dark-purple: #BF5AF2;
+    --dark-gray: #8E8E93;
+    --dark-light-gray: #2C2C2E;
+    --dark-dark-gray: #1C1C1E;
+    --dark-black: #000000;
+    --dark-white: #FFFFFF;
+    --dark-background: #000000;
+    --dark-card-background: #1C1C1E;
+    --dark-secondary-background: #2C2C2E;
+    --dark-border: #38383A;
+    --dark-shadow: rgba(0, 0, 0, 0.5);
+    --dark-text-primary: #FFFFFF;
+    --dark-text-secondary: #8E8E93;
+    --dark-text-tertiary: #48484A;
+    --dark-accent: #0A84FF;
+    --dark-success: #30D158;
+    --dark-warning: #FF9F0A;
+    --dark-error: #FF453A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--dark-background);
+    color: var(--dark-text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark Mode Logo */
+.navbar-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px var(--dark-shadow);
+    border: 1px solid var(--dark-border);
+}
+
+.welcome-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 8px 24px var(--dark-shadow);
+    transition: all 0.3s ease;
+    border: 2px solid var(--dark-border);
+}
+
+.welcome-logo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px var(--dark-shadow);
+    border-color: var(--dark-accent);
+}
+
+/* Dark Mode Navbar */
+.navbar {
+    background: var(--dark-card-background) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--dark-border);
+    box-shadow: 0 1px 3px var(--dark-shadow);
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.navbar .text-white {
+    color: var(--dark-text-primary) !important;
+}
+
+/* Dark Mode Bottom Control Bar (Google Meet/Zoom Style) */
+.bottom-control-bar {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark-card-background);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--dark-border);
+    border-radius: 50px;
+    box-shadow: 0 8px 32px var(--dark-shadow);
+    z-index: 1000;
+    padding: 10px 20px;
+    width: auto;
+    min-width: 320px;
+}
+
+.control-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.control-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--dark-secondary-background);
+    color: var(--dark-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    box-shadow: 0 2px 8px var(--dark-shadow);
+}
+
+.control-btn:hover {
+    background: var(--dark-light-gray);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px var(--dark-shadow);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.control-btn.leave-btn {
+    background: var(--dark-error);
+    color: var(--dark-white);
+    width: 52px;
+    height: 52px;
+    font-size: 18px;
+}
+
+.control-btn.leave-btn:hover {
+    background: #CC3A2E;
+    transform: scale(1.05);
+}
+
+.control-btn.leave-btn a {
+    color: var(--dark-white) !important;
+    text-decoration: none;
+}
+
+.leave-button {
+    display: flex;
+    align-items: center;
+}
+
+/* Custom Control Icons */
+.control-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Make icons white */
+    transition: all 0.2s ease;
+}
+
+.control-btn.leave-btn .control-icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1); /* Keep white for leave button */
+}
+
+/* Control button states */
+.control-btn.muted {
+    background: var(--dark-error);
+    color: var(--dark-white);
+}
+
+.control-btn.muted .mic-on {
+    display: none !important;
+}
+
+.control-btn.muted .mic-off {
+    display: block !important;
+}
+
+.control-btn.video-off {
+    background: var(--dark-error);
+    color: var(--dark-white);
+}
+
+.control-btn.video-off .camera-on {
+    display: none !important;
+}
+
+.control-btn.video-off .camera-off {
+    display: block !important;
+}
+
+.control-btn.recording {
+    background: var(--dark-error);
+    color: var(--dark-white);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 58, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 69, 58, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 58, 0);
+    }
+}
+
+/* Dark Mode Buttons */
+.btn {
+    border-radius: 12px !important;
+    font-weight: 600;
+    font-size: 17px;
+    padding: 12px 24px;
+    border: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px var(--dark-shadow);
+}
+
+.btn-info {
+    background: var(--dark-accent) !important;
+    color: var(--dark-white) !important;
+}
+
+.btn-info:hover {
+    background: #0056CC !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(10, 132, 255, 0.3);
+}
+
+.btn-outline-danger {
+    border: 1px solid var(--dark-error);
+    color: var(--dark-error);
+    background: transparent;
+}
+
+.btn-outline-danger:hover {
+    background: var(--dark-error);
+    color: var(--dark-white);
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 15px;
+    border-radius: 8px !important;
+}
+
+.btn-no-effect {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: var(--dark-text-primary) !important;
+    padding: 8px;
+    border-radius: 8px !important;
+    transition: all 0.2s ease;
+}
+
+.btn-no-effect:hover {
+    background: var(--dark-secondary-background) !important;
+    transform: scale(1.05);
+}
+
+.btn-no-effect:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Dark Mode Forms */
+.form-control {
+    border-radius: 12px !important;
+    border: 1px solid var(--dark-border);
+    padding: 16px 20px;
+    font-size: 17px;
+    background: var(--dark-secondary-background);
+    color: var(--dark-text-primary);
+    box-shadow: 0 1px 3px var(--dark-shadow);
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: var(--dark-accent);
+    box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.1);
+    outline: none;
+    background: var(--dark-secondary-background);
+}
+
+.form-control::placeholder {
+    color: var(--dark-text-tertiary);
+    font-weight: 400;
+}
+
+.form-label {
+    color: var(--dark-text-primary);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Dark Mode Cards */
+.card {
+    background: var(--dark-card-background);
+    border-radius: 16px;
+    border: 1px solid var(--dark-border);
+    box-shadow: 0 4px 16px var(--dark-shadow);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--dark-shadow);
+    border-color: var(--dark-accent);
+}
+
+.card-sm {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--dark-shadow);
+}
+
+/* Dark Mode Videos */
+.local-video {
+    position: fixed;
+    bottom: 100px;
+    left: 20px;
+    width: 120px;
+    height: 90px;
+    border-radius: 16px;
+    border: 3px solid var(--dark-border);
+    box-shadow: 0 4px 16px var(--dark-shadow);
+    object-fit: cover;
+    z-index: 1000;
+}
+
+.remote-video {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px var(--dark-shadow);
+    border: 1px solid var(--dark-border);
+}
+
+.remote-video-controls {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    border-radius: 0 0 16px 16px;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.remote-video:hover + .remote-video-controls,
+.remote-video-controls:hover {
+    visibility: visible;
+}
+
+/* Dark Mode Chat */
+.chat-col {
     right: -100vw;
     bottom: 0;
-    top: 40.5px;
+    top: 0;
     z-index: 1000;
     position: fixed;
-    color: #fff;
-    padding-right: 5px;
-    padding-left: 5px;
-    padding-bottom: 40px;
-    padding-top: 15px;
+    background: var(--dark-card-background);
+    color: var(--dark-text-primary);
+    padding: 20px;
     min-height: 100vh;
+    border-left: 1px solid var(--dark-border);
+    box-shadow: -4px 0 16px var(--dark-shadow);
 }
 
 .chat-col.chat-opened {
     right: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    transition: all 0.3s ease !important;
-    -webkit-transition: all 0.3s ease !important;
-    -moz-transition: all 0.3s ease !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-#chat-messages{
+.chat-close-btn {
+    background: var(--dark-secondary-background) !important;
+    border: 1px solid var(--dark-border) !important;
+    border-radius: 50% !important;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-text-primary) !important;
+    transition: all 0.2s ease;
+}
+
+.chat-close-btn:hover {
+    background: var(--dark-error) !important;
+    color: var(--dark-white) !important;
+    transform: scale(1.1);
+}
+
+.chat-close-btn:focus {
+    box-shadow: 0 0 0 3px rgba(255, 69, 58, 0.2) !important;
+}
+
+#chat-messages {
     height: 70vh;
     margin-bottom: 20px;
     overflow-x: hidden;
     overflow-y: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 #chat-messages::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
+    width: 0px;
     background: transparent;
 }
 
-.chat-box{
-    bottom: 0px;
-    right: 0;
-    position: absolute;
-    border: 0;
-    border-top: 1px groove white;
-    border-left: 1px groove white;
-    font-size: small;
+.chat-box {
+    border-radius: 20px;
+    border: 1px solid var(--dark-border);
+    font-size: 16px;
+    padding: 12px 16px;
+    background: var(--dark-secondary-background);
+    color: var(--dark-text-primary);
+    resize: none;
+    box-shadow: 0 2px 8px var(--dark-shadow);
 }
 
-.chat-box::placeholder{
-    font-size: small;
-    font-weight: lighter;
-    font-style: italic;
+.chat-box:focus {
+    border-color: var(--dark-accent);
+    box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.1);
+    outline: none;
 }
 
-.chat-box,
-.chat-box:focus{
-    resize: none !important;
-    box-shadow: none !important;
-}
-
-.chat-row{
-    height: 100%;
-    overflow-x: scroll;
-}
-
-.main{
-    padding-top: 40px;
-}
-
-
-.remote-video{
-    width:100%;
-    height:auto;
-    max-height: 90vh;
-}
-
-
-.remote-video-controls{
-    position:absolute;
-    bottom: 0;
-    background-color:rgba(0, 0, 0, 0.5);
-    z-index:300000;
-    padding: 10px;
-    width: 100%;
-    text-align: center;
-    visibility: hidden;
-}
-
-
-.remote-video:hover + .remote-video-controls,
-.remote-video-controls:hover{
-    visibility: visible;
-}
-
-
-.local-video{
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    width:15vw;
-}
-
-
-.mirror-mode{
-    -ms-transform: scaleX(-1);
-    -moz-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-}
-
-
-.sender-info{
-    font-size: smaller;
-    margin-top: 5px;
-    align-self: flex-end;
-}
-
-
-.msg{
+.chat-box::placeholder {
+    color: var(--dark-text-tertiary);
     font-weight: 400;
+}
+
+.msg {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--dark-text-primary);
+    background: var(--dark-secondary-background);
+    padding: 12px 16px;
+    border-radius: 18px;
+    margin-bottom: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+    border: 1px solid var(--dark-border);
+}
+
+.sender-info {
     font-size: 12px;
-    color: black;
-    background-color: wheat;
+    color: var(--dark-text-secondary);
+    margin-bottom: 4px;
+    font-weight: 600;
 }
 
-
-.chat-card{
-    border-radius: 6px;
-}
-
-
-.btn-no-effect:focus{
-    box-shadow: none;
-}
-
-.very-small{
-    font-size: 6px !important;
-}
-
-
-#close-single-peer-btn {
-    position: fixed;
-    top: 0;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.5);
-    color: #f1f1f1;
-    border-radius: 0%;
-    z-index: 100;
-}
-
-
-.pointer{
-    cursor: pointer;
-}
-
-
-.record-option{
-    height: 200px;
-    border-radius: 10%;
-    border: 1px solid #17a2b8;
-    cursor: pointer;
-    padding: 10px;
-    vertical-align: middle;
-}
-
-
+/* Dark Mode Modal */
 .custom-modal {
     display: none;
     position: fixed;
@@ -171,62 +483,326 @@
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
-
 
 .custom-modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    background: var(--dark-card-background);
+    margin: 20% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 40px var(--dark-shadow);
+    animation: modalSlideUp 0.3s ease;
+    border: 1px solid var(--dark-border);
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.record-option {
+    height: 120px;
+    border-radius: 16px;
+    border: 2px solid var(--dark-accent);
+    cursor: pointer;
     padding: 20px;
-    border: 1px solid #17a2b8;
-    width: 80%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--dark-accent);
+    transition: all 0.2s ease;
+    background: rgba(10, 132, 255, 0.1);
 }
 
-
-@keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
+.record-option:hover {
+    background: var(--dark-accent);
+    color: var(--dark-white);
+    transform: scale(1.02);
 }
 
+/* Dark Mode Badges */
+.badge {
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+}
 
-@media only screen and (max-width:767px){
-    .chat-col{
+.badge-danger {
+    background: var(--dark-error);
+    color: var(--dark-white);
+}
+
+.very-small {
+    font-size: 10px !important;
+}
+
+/* Dark Mode Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--dark-text-primary);
+}
+
+.h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.h4 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+/* Dark Mode Layout */
+.container-fluid {
+    padding: 20px;
+    margin-top: 60px;
+}
+
+.main {
+    padding-top: 80px;
+    padding-bottom: 120px; /* Add space for bottom control bar */
+}
+
+/* Dark Mode Icons */
+.fa {
+    font-size: 18px;
+}
+
+.btn-sm .fa {
+    font-size: 16px;
+}
+
+/* Dark Mode Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Dark Mode Responsive */
+@media only screen and (max-width: 767px) {
+    .chat-col {
         right: -100vw;
         width: 100vw;
         z-index: 99999;
         transition: 0.3s;
-        top: 47px;
-    }
-  
-    .chat-opened::-webkit-scrollbar {
-        display: none;
-    }
-
-    #chat-messages{
-        height: 60vh;
-    }
-
-    .chat-box{
-        bottom: 90px;
-        margin-bottom: 0px;
+        top: 0;
     }
     
-    .card-sm{
-        max-width: 100%;
-        min-width: 50%;
+    .chat-opened::-webkit-scrollbar {
+        width: 0px;
     }
-
-
-    .local-video{
-        width:40vw;
+    
+    #chat-messages {
+        height: 60vh;
+    }
+    
+    .chat-box {
+        font-size: 16px;
+        padding: 16px;
+    }
+    
+    .card-sm {
+        margin-bottom: 10px;
+    }
+    
+    .local-video {
+        width: 100px;
+        height: 75px;
+        bottom: 100px;
+        left: 15px;
+    }
+    
+    .container-fluid {
+        padding: 15px;
+    }
+    
+    .btn {
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+    
+    .navbar-logo {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .welcome-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .control-bar-container {
+        padding: 0 15px;
+        gap: 12px;
+    }
+    
+    .control-buttons {
+        gap: 12px;
+    }
+    
+    .control-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+    }
+    
+    .control-btn.leave-btn {
+        width: 52px;
+        height: 52px;
+        font-size: 18px;
+    }
+    
+    .control-icon {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .control-btn.leave-btn .control-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .bottom-control-bar {
+        bottom: 15px;
+        min-width: 320px;
+        padding: 10px 20px;
     }
 }
 
-
-@media (min-width:768px){
-    .card{
-        width: 50%;
-        z-index: 1000;
+@media (min-width: 768px) {
+    .card {
+        margin-bottom: 20px;
     }
+    
+    .chat-col {
+        width: 350px;
+    }
+}
+
+/* Dark Mode Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mb-2 {
+    margin-bottom: 8px;
+}
+
+.mb-3 {
+    margin-bottom: 12px;
+}
+
+.mb-4 {
+    margin-bottom: 16px;
+}
+
+.mt-2 {
+    margin-top: 8px;
+}
+
+.mt-3 {
+    margin-top: 12px;
+}
+
+.mt-5 {
+    margin-top: 20px;
+}
+
+.mr-2 {
+    margin-right: 8px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Dark Mode Focus States */
+*:focus {
+    outline: none;
+}
+
+/* Dark Mode Selection */
+::selection {
+    background: var(--dark-accent);
+    color: var(--dark-white);
+}
+
+/* Dark Mode Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-secondary-background);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--dark-gray);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-text-secondary);
+}
+
+/* Dark Mode Text Colors */
+.text-muted {
+    color: var(--dark-text-secondary) !important;
+}
+
+.text-danger {
+    color: var(--dark-error) !important;
+}
+
+.text-white {
+    color: var(--dark-text-primary) !important;
+}
+
+/* Dark Mode Bootstrap Overrides */
+.bg-info {
+    background-color: var(--dark-accent) !important;
+}
+
+.bg-dark {
+    background-color: var(--dark-card-background) !important;
+}
+
+.border-info {
+    border-color: var(--dark-accent) !important;
+}
+
+/* Dark Mode Loading Spinner */
+.spinner-border.text-info {
+    color: var(--dark-accent) !important;
 }

@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>Multi-User Video Call</title>
+        <title>Video Meet -V2</title>
 
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="theme-color" content="#1C1C1E">
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/15047/15047720.png">
+        <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/15047/15047720.png">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -20,109 +27,123 @@
     </head>
 
     <body>
+        <!-- Dark Mode Recording Modal -->
         <div class="custom-modal" id='recording-options-modal'>
             <div class="custom-modal-content">
                 <div class="row text-center">
-                    <div class="col-md-6 mb-2">
-                        <span class="record-option" id='record-video'>Record video</span>
+                    <div class="col-12 mb-3">
+                        <h4 style="color: var(--dark-text-primary); font-weight: 600;">Choose Recording Type</h4>
                     </div>
-                    <div class="col-md-6 mb-2">
-                        <span class="record-option" id='record-screen'>Record screen</span>
+                    <div class="col-md-6 mb-3">
+                        <div class="record-option" id='record-video'>
+                            <div>
+                                <i class="fa fa-video fa-2x mb-2"></i>
+                                <div>Record Video</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="record-option" id='record-screen'>
+                            <div>
+                                <i class="fa fa-desktop fa-2x mb-2"></i>
+                                <div>Record Screen</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row mt-3">
+                <div class="row mt-4">
                     <div class="col-md-12 text-center">
-                        <button class="btn btn-outline-danger" id='closeModal'>Close</button>
+                        <button class="btn btn-outline-danger" id='closeModal'>Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
         
-        <nav class="navbar fixed-top bg-info rounded-0 d-print-none">
-            <div class="text-white">Video Call</div>
+        <!-- Dark Mode Navigation Bar -->
+        <nav class="navbar fixed-top rounded-0 d-print-none">
+            <div class="text-white d-flex align-items-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/15047/15047720.png" alt="Logo" class="navbar-logo mr-2">
+                <span>Video Meet</span>
+            </div>
 
             <div class="pull-right room-comm" hidden>
-                <span class="text-white mr-5">
-                    Unique Identifier: <span id='randomNumber'></span>
+                <span class="text-white mr-4">
+                    <i class="fa fa-hashtag mr-1"></i>
+                    <span id='randomNumber'></span>
                 </span>
 
-                <button class="btn btn-sm rounded-0 btn-no-effect" id='toggle-video' title="Hide Video">
-                    <i class="fa fa-video text-white"></i>
-                </button>
-
-                <button class="btn btn-sm rounded-0 btn-no-effect" id='toggle-mute' title="Mute">
-                    <i class="fa fa-microphone-alt text-white"></i>
-                </button>
-
-                <button class="btn btn-sm rounded-0 btn-no-effect" id='share-screen' title="Share screen">
-                    <i class="fa fa-desktop text-white"></i>
-                </button>
-
-                <button class="btn btn-sm rounded-0 btn-no-effect" id='record' title="Record">
-                    <i class="fa fa-dot-circle text-white"></i>
-                </button>
-
-                <button class="btn btn-sm text-white pull-right btn-no-effect" id='toggle-chat-pane'>
-                    <i class="fa fa-comment"></i> <span class="badge badge-danger very-small font-weight-lighter" id='new-chat-notification' hidden>New</span>
-                </button>
-
                 <button class="btn btn-sm rounded-0 btn-no-effect text-white">
-                    <a href="/" class="text-white text-decoration-none"><i class="fa fa-sign-out-alt text-white" title="Leave"></i></a>
+                    <a href="/" class="text-white text-decoration-none" title="Leave Call">
+                        <i class="fa fa-sign-out-alt text-white"></i>
+                    </a>
                 </button>
             </div>
         </nav>
 
-        <div class="container-fluid" id='room-create' hidden>
+        <!-- Dark Mode Room Creation -->
+        <div class="container-fluid fade-in" id='room-create' hidden>
             <div class="row">
-                <div class="col-12 h2 mt-5 text-center">Create Room</div>
+                <div class="col-12 text-center mt-5 mb-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/15047/15047720.png" alt="Logo" class="welcome-logo mb-3">
+                    <div class="h2">Create New Room</div>
+                </div>
             </div>
             
-            <div class="row mt-2">
+            <div class="row mt-4">
                 <div class="col-12 text-center">
                     <span class="form-text small text-danger" id='err-msg'></span>
                 </div>
 
-                <div class="col-12 col-md-4 offset-md-4 mb-3">
-                    <label for="room-name">Room Name</label>
-                    <input type="text" id='room-name' class="form-control rounded-0" placeholder="Room Name">
+                <div class="col-12 col-md-4 offset-md-4 mb-4">
+                    <label for="room-name" class="form-label">Room Name</label>
+                    <input type="text" id='room-name' class="form-control" placeholder="Enter room name">
                 </div>
 
-                <div class="col-12 col-md-4 offset-md-4 mb-3">
-                    <label for="your-name">Your Name</label>
-                    <input type="text" id='your-name' class="form-control rounded-0" placeholder="Your Name">
+                <div class="col-12 col-md-4 offset-md-4 mb-4">
+                    <label for="your-name" class="form-label">Your Name</label>
+                    <input type="text" id='your-name' class="form-control" placeholder="Enter your name">
                 </div>
 
-                <div class="col-12 col-md-4 offset-md-4 mb-3">
-                    <button id='create-room' class="btn btn-block rounded-0 btn-info">Create Room</button>
+                <div class="col-12 col-md-4 offset-md-4 mb-4">
+                    <button id='create-room' class="btn btn-block btn-info">
+                        <i class="fa fa-plus mr-2"></i>Create Room
+                    </button>
                 </div>
 
                 <div class="col-12 col-md-4 offset-md-4 mb-3" id='room-created'></div>
             </div>
         </div>
 
-        <div class="container-fluid" id='username-set' hidden>
+        <!-- Dark Mode Username Setup -->
+        <div class="container-fluid fade-in" id='username-set' hidden>
             <div class="row">
-                <div class="col-12 h4 mt-5 text-center">Your Name</div>
+                <div class="col-12 text-center mt-5 mb-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/15047/15047720.png" alt="Logo" class="welcome-logo mb-3">
+                    <div class="h4">Join Room</div>
+                </div>
             </div>
             
-            <div class="row mt-2">
+            <div class="row mt-4">
                 <div class="col-12 text-center">
                     <span class="form-text small text-danger" id='err-msg-username'></span>
                 </div>
 
-                <div class="col-12 col-md-4 offset-md-4 mb-3">
-                    <label for="username">Your Name</label>
-                    <input type="text" id='username' class="form-control rounded-0" placeholder="Your Name">
+                <div class="col-12 col-md-4 offset-md-4 mb-4">
+                    <label for="username" class="form-label">Your Name</label>
+                    <input type="text" id='username' class="form-control" placeholder="Enter your name">
                 </div>
 
-                <div class="col-12 col-md-4 offset-md-4 mb-3">
-                    <button id='enter-room' class="btn btn-block rounded-0 btn-info">Enter Room</button>
+                <div class="col-12 col-md-4 offset-md-4 mb-4">
+                    <button id='enter-room' class="btn btn-block btn-info">
+                        <i class="fa fa-sign-in-alt mr-2"></i>Join Room
+                    </button>
                 </div>
             </div>
         </div>
         
-        <div class="container-fluid room-comm" hidden>
+        <!-- Dark Mode Video Call Interface -->
+        <div class="container-fluid room-comm fade-in" hidden>
             <div class="row">
                 <video class="local-video mirror-mode" id='local' volume='0' autoplay muted></video>
             </div>
@@ -132,23 +153,76 @@
                     <div class="row mt-2 mb-2" id='videos'></div>
                 </div>
 
-                <div class="col-md-3 chat-col d-print-none mb-2 bg-info" id='chat-pane' hidden>
+                <!-- Dark Mode Chat Panel -->
+                <div class="col-md-3 chat-col d-print-none mb-2" id='chat-pane' hidden>
                     <div class="row">
-                        <div class="col-12 text-center h2 mb-3">CHAT</div>
+                        <div class="col-12 text-center h4 mb-4 d-flex justify-content-between align-items-center">
+                            <div></div>
+                            <div><i class="fa fa-comments mr-2"></i>Chat</div>
+                            <button class="btn btn-sm btn-no-effect chat-close-btn" id='close-chat-pane' title="Close Chat">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div id='chat-messages'></div>
 
                     <form>
-                        <div class="input-group mb-3" >
-                            <textarea  id="chat-input" class="form-control rounded-0 chat-box border-info" rows='3' placeholder="Type here..."></textarea>
+                        <div class="input-group mb-3">
+                            <textarea id="chat-input" class="form-control chat-box" rows='3' placeholder="Type your message..."></textarea>
                             <div class="input-group-append" id='chat-input-btn'>
-                                <button type="button" class="btn btn-dark rounded-0 border-info btn-no-effect">Send</button>
+                                <button type="button" class="btn btn-info rounded-0 border-info btn-no-effect">
+                                    <i class="fa fa-paper-plane"></i>
+                                </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
+
+        <!-- Dark Mode Bottom Control Bar (Google Meet/Zoom Style) -->
+        <div class="bottom-control-bar room-comm" hidden>
+            <div class="control-bar-container">
+                <div class="control-buttons">
+                    <button class="control-btn" id='toggle-mute' title="Toggle Mute">
+                        <i class="fa fa-microphone-alt"></i>
+                    </button>
+
+                    <button class="control-btn" id='toggle-video' title="Toggle Video">
+                        <i class="fa fa-video"></i>
+                    </button>
+
+                    <button class="control-btn" id='share-screen' title="Share Screen">
+                        <i class="fa fa-desktop"></i>
+                    </button>
+
+                    <button class="control-btn" id='record' title="Record">
+                        <i class="fa fa-dot-circle"></i>
+                    </button>
+
+                    <button class="control-btn" id='toggle-chat-pane' title="Chat">
+                        <i class="fa fa-comment"></i>
+                        <span class="badge badge-danger very-small" id='new-chat-notification' hidden>New</span>
+                    </button>
+                </div>
+
+                <div class="leave-button">
+                    <button class="control-btn leave-btn" title="Leave Call">
+                        <a href="/" class="text-white text-decoration-none">
+                            <i class="fa fa-phone-slash"></i>
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dark Mode Loading Indicator -->
+        <div id="loading-indicator" class="text-center mt-5" style="display: none;">
+            <div class="spinner-border text-info" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <p class="mt-3 text-muted">Connecting to room...</p>
         </div>
     </body>
 </html>
