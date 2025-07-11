@@ -225,4 +225,46 @@
             <p class="mt-3 text-muted">Connecting to room...</p>
         </div>
     </body>
+    <style>
+      /* Responsive Buy Me a Coffee Button */
+      .bmc-fixed-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+      }
+      .bmc-btn {
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        padding: 10px 20px;
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      @media (max-width: 600px) {
+        .bmc-fixed-btn {
+          bottom: 10px;
+          right: 10px;
+        }
+        .bmc-btn {
+          padding: 7px 12px;
+          font-size: 0.9rem;
+        }
+        .bmc-btn span {
+          font-size: 0.95rem;
+        }
+        .bmc-btn i {
+          font-size: 1rem;
+        }
+      }
+    </style>
+    <!-- Buy Me a Coffee Button (Mobile Responsive) -->
+    <div class="bmc-fixed-btn">
+      <a href="https://coff.ee/dbaidya811e" target="_blank" rel="noopener" class="btn btn-warning btn-lg shadow bmc-btn">
+        <i class="fa fa-coffee"></i>
+        <span>Buy Me a Coffee</span>
+      </a>
+    </div>
 </html>
