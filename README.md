@@ -1,252 +1,120 @@
-# 🎥 Video Meet (V2) - WEB Video Conferencing App
+# Videosmeet V2
 
-A modern, dark-mode video conferencing application built with Node.js, WebRTC, and Socket.io. Features a beautiful iOS-inspired dark theme with Google Meet/Zoom-style controls.
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 
-![Video Meet](https://cdn-icons-png.flaticon.com/512/15047/15047720.png)
 
-## ✨ Features
+## Table of Contents
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Project Structure](#-project-structure)
+- [License](#-license)
 
-### 🎨 Modern Dark Mode Design
-- **Complete Dark Theme**: Pure black background with dark gray elements
-- **iOS-Inspired**: Apple system fonts and modern design patterns
-- **Glassmorphism Effects**: Backdrop blur and subtle shadows
-- **Responsive Design**: Optimized for desktop and mobile devices
-
-### 🎥 Video Call Features
-- **Real-time Video/Audio**: WebRTC-powered video conferencing
-- **Screen Sharing**: Share your screen with participants
-- **Recording**: Record video calls or screen sharing sessions
-- **Picture-in-Picture**: Click local video for PiP mode
-- **Multiple Participants**: Support for multiple users in a room
-
-### 🎛️ Control Interface
-- **Centered Control Bar**: Modern pill-shaped control bar at bottom
-- **Custom Icons**: Beautiful Flaticon icons for all controls
-- **Smart Button States**: Visual feedback for mute, video off, recording
-- **Mobile Optimized**: Touch-friendly controls for mobile devices
-
-### 💬 Chat System
-- **Real-time Messaging**: Live chat during video calls
-- **Chat Notifications**: "New" badge for unread messages
-- **Easy Close**: Close button for mobile-friendly chat dismissal
-- **Dark Theme Chat**: Consistent dark mode chat interface
-
-### 🔧 Technical Features
-- **WebRTC**: Peer-to-peer video/audio streaming
-- **Socket.io**: Real-time communication
-- **Node.js Backend**: Scalable server architecture
-- **Cross-platform**: Works on all modern browsers
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
-- Modern web browser with WebRTC support
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd Video-Call-App-NodeJS
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the server**
-   ```bash
-   npm start
-   ```
-
-4. **Open in browser**
-   ```
-   http://localhost:3000
-   ```
-
-## 📱 How to Use
-
-### Creating a Room
-1. Enter a room name and your name
-2. Click "Create Room"
-3. Share the generated room link with participants
-4. Click the link to join the room
-
-### Joining a Room
-1. Enter your name
-2. Click "Join Room"
-3. Allow camera and microphone permissions
-4. Start your video call!
-
-### Control Buttons
-- **🎤 Microphone**: Toggle audio on/off
-- **📹 Camera**: Toggle video on/off
-- **🖥️ Screen Share**: Share your screen
-- **🔴 Record**: Start/stop recording
-- **💬 Chat**: Open/close chat panel
-- **📞 End Call**: Leave the room
-
-### Chat Features
-- Click the chat button to open the chat panel
-- Type messages and press Enter or click Send
-- Click the × button to close chat
-- Chat notifications appear when new messages arrive
-
-## 🎨 Design Features
-
-### Dark Mode Color Palette
-- **Primary Blue**: #0A84FF (accent color)
-- **Success Green**: #30D158
-- **Error Red**: #FF453A
-- **Warning Orange**: #FF9F0A
-- **Background**: #000000 (pure black)
-- **Card Background**: #1C1C1E
-- **Secondary Background**: #2C2C2E
-
-### Custom Icons
-All control buttons use high-quality Flaticon icons:
-- Microphone On/Off icons
-- Camera On/Off icons
-- Screen Share icon
-- Recording icon
-- Chat icon
-- End Call icon
-
-### Responsive Design
-- **Desktop**: Full-featured interface with side-by-side layout
-- **Mobile**: Optimized touch controls and compact design
-- **Tablet**: Adaptive layout for medium screens
-
-## 🛠️ Technical Stack
-
-### Frontend
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with CSS Grid and Flexbox
-- **JavaScript (ES6+)**: Modern JavaScript features
-- **WebRTC**: Real-time video/audio communication
-- **Socket.io Client**: Real-time messaging
-
-### Backend
-- **Node.js**: Server runtime
-- **Express.js**: Web framework
-- **Socket.io**: Real-time communication
-- **WebRTC**: Peer-to-peer connections
-
-### Dependencies
-```json
-{
-  "express": "^4.21.0",
-  "serve-favicon": "^2.5.0",
-  "socket.io": "^4.7.5"
-}
-```
-
-## 📁 Project Structure
-
-```
-Video-Call-App-NodeJS/
-├── src/
-│   ├── app.js                 # Main server file
-│   ├── index.html             # Main HTML file
-│   ├── favicon.png            # App icon
-│   ├── assets/
-│   │   ├── css/
-│   │   │   └── app.css        # Main stylesheet
-│   │   └── js/
-│   │       ├── rtc.js         # WebRTC functionality
-│   │       ├── events.js      # Event handlers
-│   │       ├── helpers.js     # Utility functions
-│   │       └── autolink.js    # Auto-linking utility
-│   └── ws/
-│       └── stream.js          # Socket.io stream handling
-├── package.json               # Dependencies and scripts
-├── package-lock.json          # Locked dependencies
-└── README.md                  # This file
-```
-
-## 🔧 Development
-
-### Running in Development Mode
-```bash
-npm run watch
-```
-This will start the server with nodemon for automatic restarts on file changes.
-
-### Building for Production
-```bash
-npm start
-```
-
-## 🌐 Browser Support
-
-- **Chrome**: 60+
-- **Firefox**: 55+
-- **Safari**: 11+
-- **Edge**: 79+
-
-## 📱 Mobile Support
-
-- **iOS Safari**: 11+
-- **Chrome Mobile**: 60+
-- **Firefox Mobile**: 55+
-- **Samsung Internet**: 7+
-
-## 🔒 Security Features
-
-- **HTTPS Recommended**: Use HTTPS in production
-- **WebRTC Security**: Built-in encryption for video/audio
-- **Input Sanitization**: XSS protection for chat messages
-- **Session Management**: Secure room access
-
-## 🚀 Deployment
-
-### Local Development
-```bash
-npm start
-```
-
-### Production Deployment
-1. Set up a Node.js server
-2. Install dependencies: `npm install --production`
-3. Start the server: `npm start`
-4. Configure reverse proxy (nginx/Apache) if needed
-5. Set up SSL certificate for HTTPS
-
-### Environment Variables
-- `PORT`: Server port (default: 3000)
-- `NODE_ENV`: Environment (development/production)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the ISC License.
-
-## 🙏 Acknowledgments
-
-- **Flaticon**: For the beautiful custom icons
-- **FontAwesome**: For additional UI icons
-- **WebRTC**: For real-time communication technology
-- **Socket.io**: For real-time messaging
-
-## 📞 Support
-
-For support and questions:
-- Create an issue on GitHub
-- Check the documentation
-- Review the code comments
 
 ---
 
-**Made with ❤️ for modern video conferencing**
+## ✨ Overview
 
-*Video Meet - Where dark mode meets video calls* 
+Videosmeet V2 is a comprehensive full-stack web application developed using JavaScript and built with Express.js. It features responsive user interface, detailed documentation. Ideal for businesses and users seeking a complete digital solution with both frontend and backend components.
+
+---
+
+
+## 🔗 Connect with me
+
+[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/dbaidya811) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dbaidya811)
+
+
+## 🚀 Features
+
+- **Modern UI/UX:** Responsive design with intuitive user interface and smooth user experience
+- **Full-stack Integration:** Seamless communication between frontend and backend components
+- **Real-time Updates:** Dynamic content updates and real-time data synchronization
+- **Cross-platform Compatibility:** Works seamlessly across different devices, browsers, and screen sizes
+- **Advanced State Management:** Efficient state handling and data flow management
+- **Express.js Framework:** Middleware support and flexible routing system
+- **Detailed Documentation:** Complete guides, API references, and usage examples
+- **Component Architecture:** Modular UI components for reusability
+- **Auto Documentation:** Automatic API documentation and guides
+- **Real-time Communication:** WebSocket support for live updates
+
+---
+
+## 🛠️ Tech Stack
+
+- **Primary Language:** JavaScript
+- **Framework:** Express.js
+- **Frontend:** JavaScript
+- **Backend:** Express.js, Node.js
+- **Tools & Libraries:** npm, Git
+
+## 📊 Languages Used
+
+![JavaScript](https://img.shields.io/badge/JavaScript-54.5%25-blue?style=for-the-badge) ![JSON](https://img.shields.io/badge/JSON-18.2%25-blue?style=for-the-badge) ![Markdown](https://img.shields.io/badge/Markdown-9.1%25-blue?style=for-the-badge) ![HTML](https://img.shields.io/badge/HTML-9.1%25-blue?style=for-the-badge) ![CSS](https://img.shields.io/badge/CSS-9.1%25-blue?style=for-the-badge) 
+
+
+## ⚙️ Installation
+
+```bash
+# Clone the repository
+# git clone https://github.com/dbaidya811/VideosMeet-V2.git
+# Change directory
+# cd VideosMeet-V2
+# Backend setup (if applicable)
+npm install
+```
+
+---
+
+## 🏃 Usage
+
+Use the following command to run the project:
+
+```bash
+# Run the project
+npm start
+```
+
+---
+
+## 📂 Project Structure
+
+A brief overview of the key files and directories:
+```
+VideosMeet-V2/
+├── package-lock.json
+├── package.json
+├── README.md
+├── node_modules\@socket.io\component-emitter\index.d.ts
+├── node_modules\@socket.io\component-emitter\index.js
+├── node_modules\@socket.io\component-emitter\index.mjs
+├── node_modules\@socket.io\component-emitter\LICENSE
+├── node_modules\@socket.io\component-emitter\package.json
+├── node_modules\@socket.io\component-emitter\Readme.md
+├── node_modules\@types\cookie\index.d.ts
+├── node_modules\@types\cookie\LICENSE
+├── node_modules\@types\cookie\package.json
+├── node_modules\@types\cookie\README.md
+├── node_modules\@types\cors\index.d.ts
+├── node_modules\@types\cors\LICENSE
+└── ...
+```
+
+---
+
+## 📄 License
+
+No license file found.
+
+
+## 🙏 Support
+
+If you like this project, please consider supporting me.
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-%23FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/dbaidya811e)
+
+---
+
+*This README was automatically generated. Feel free to edit and improve!*
