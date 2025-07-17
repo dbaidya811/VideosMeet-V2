@@ -1,6 +1,15 @@
 import helpers from './helpers.js';
 
 window.addEventListener( 'load', () => {
+    // Hide Buy Me a Coffee button in room
+    const bmcBtnContainer = document.getElementById('bmc-btn-container');
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('room')) {
+        if (bmcBtnContainer) bmcBtnContainer.style.display = 'none';
+    } else {
+        if (bmcBtnContainer) bmcBtnContainer.style.display = 'block';
+    }
+
     //When the chat icon is clicked
     document.querySelector( '#toggle-chat-pane' ).addEventListener( 'click', ( e ) => {
         let chatElem = document.querySelector( '#chat-pane' );
